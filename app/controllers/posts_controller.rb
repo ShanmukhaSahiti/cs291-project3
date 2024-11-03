@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
-  before_action :require_author, only: [ :edit, :update, :destroy ]
+  before_action :require_author_verification, only: [ :edit, :update, :destroy ]
+  before_action :require_author, only: [ :new, :create ]
+
   def index
     @posts = Post.all
   end
@@ -14,6 +16,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.author = current_user.username
 
     if @post.save
       redirect_to @post
@@ -45,12 +48,18 @@ class PostsController < ApplicationController
   end
 
   def require_author
+    unless current_user.username != nil
+      redirect_to posts_path, alert: "You are not authorized to perform this action."
+    end
+  end
+
+  def require_author_verification
     unless @post.author == current_user.username
       redirect_to posts_path, alert: "You are not authorized to perform this action."
     end
   end
 
   def post_params
-    params.require(:post).permit(:body, :author)
+    params.require(:post).permit(:body)
   end
 end
