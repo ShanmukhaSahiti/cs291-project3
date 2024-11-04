@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_author, only: [ :new, :create ]
 
   def index
-    @posts = Post.all
+    @posts = Post.order(updated_at: :desc)
     @post = Post.new
   end
 
