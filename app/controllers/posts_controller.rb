@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
-  before_action :require_author_verification, only: [ :edit, :update, :destroy ]
-  before_action :require_author, only: [ :new, :create ]
+  before_action :require_author, only: [ :edit, :update, :destroy ]
+  skip_before_action :require_login, only: [ :index ]
 
   def index
     @posts = Post.order(updated_at: :desc)
@@ -49,14 +49,8 @@ class PostsController < ApplicationController
   end
 
   def require_author
-    unless current_user.username != nil
-      redirect_to posts_path, alert: "You are not authorized to perform this action."
-    end
-  end
-
-  def require_author_verification
     unless @post.author == current_user.username
-      redirect_to posts_path, alert: "You are not authorized to perform this action."
+      redirect_to post_path, alert: "You are not authorized to perform this action."
     end
   end
 

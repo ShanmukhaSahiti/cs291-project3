@@ -1,12 +1,21 @@
 <div class="container" style="margin-top: 1rem;">
   
-  <p class="lead"> Welcome to CS291's twitter! Browse through all the posts available or go ahead and create a new post of yours!</p> 
-  <%= render "posts/form", post: @post %>
+  <h3>Welcome to CS291's twitter! </h3>
+  <p class="lead">
+    <% if current_user != nil %>
+      Browse through all the posts available or go ahead and create a new post of yours!
+      <%= render "posts/form", post: @post %>
+    <% else %>
+      Login to create your own posts, view comments to an existing post or add your own comment! 
+    <% end %>
+  </p> 
+  
   <br/>
   
   <h4> All Posts </h4>
-    <p class="lead"> Click on the comments link to add your comments to an existing post.  </p>
-  
+  <% if current_user != nil %>  
+  <p class="lead"> Click on the comments link to add your comments to an existing post.  </p>
+  <% end %>
   <% @posts.each do |post| %>
     <div class="container">
       <small id="subtitle" class="form-text text-muted"><%=post.author%> at <%= post.updated_at.localtime.strftime('%b %d, %Y %I:%M %p')%></small>
