@@ -9,7 +9,7 @@
   
   <% @posts.each do |post| %>
     <div class="container">
-      <small id="subtitle" class="form-text text-muted"><%=post.author%> at <%= post.updated_at%></small>
+      <small id="subtitle" class="form-text text-muted"><%=post.author%> at <%= post.updated_at.localtime.strftime('%b %d, %Y %I:%M %p')%></small>
       <p><%= post.body %>
         <br/>
         <%= link_to post.comments.length.to_s + " Comments", post%>

@@ -2,7 +2,7 @@
   
   <h4> Post </h4>
   <div class="container">
-    <small id="subtitle" class="form-text text-muted"><%=@post.author%> at <%= @post.updated_at%></small>
+    <small id="subtitle" class="form-text text-muted"><%=@post.author%> at <%= @post.updated_at.localtime.strftime('%b %d, %Y %I:%M %p')%></small>
     <div class="shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 1rem !important">
       <p class="lead"><%= @post.body %></p>
       <small id="subtitle" class="form-text text-muted">

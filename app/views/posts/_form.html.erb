@@ -1,8 +1,8 @@
 <%= form_with model: post do |form| %>
-  <div class="form-group" style="margin-bottom: 0rem;">
+  <div class="form-group" style="margin-bottom: 4px;">
     <%= form.text_area :body, class: "form-control", placeholder: "Enter the contents of your post" %><br>
     <% post.errors.full_messages_for(:body).each do |message| %>
-      <small id="errors" class="form-text text-muted" style="margin-top: -1rem; margin-bottom: 4px;"><%=message%></small>
+      <small id="errors" class="form-text text-muted"><%=message%></small>
     <% end %>
   </div>
   <%= form.submit class: "btn btn-primary"%>
