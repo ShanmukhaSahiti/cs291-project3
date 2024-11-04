@@ -24,6 +24,7 @@
 
   <body class="container">
     <header class="h4">
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 1rem !important">
        <% if current_user != nil %>
        <span >
           <%= link_to "Home", root_path, class: "navButton" %>
@@ -40,6 +41,7 @@
           <%= link_to "Login", login_path, class: "navButton" %>
         </span>
       <% end %>
+      </div>
     </header>
 
     <% flash.each do |key, message| %>
