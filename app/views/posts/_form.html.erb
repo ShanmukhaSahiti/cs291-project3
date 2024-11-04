@@ -1,14 +1,9 @@
 <%= form_with model: post do |form| %>
-  
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+  <div class="form-group" style="margin-bottom: 0rem;">
+    <%= form.text_area :body, class: "form-control", placeholder: "Enter the contents of your post" %><br>
     <% post.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+      <small id="errors" class="form-text text-muted" style="margin-top: -1rem; margin-bottom: 4px;"><%=message%></small>
     <% end %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit class: "btn btn-primary"%>
 <% end %>

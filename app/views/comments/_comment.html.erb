@@ -1,9 +1,4 @@
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
+<div class="container">
+  <small id="subtitle" class="form-text text-muted"><%=comment.commenter%> at <%= comment.updated_at%></small>
+  <p><%= comment.body %></p>
+</div>

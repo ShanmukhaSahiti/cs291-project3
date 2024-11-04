@@ -23,9 +23,9 @@
   </head>
 
   <body class="container">
-    <header>
+    <header class="h4">
        <% if current_user != nil %>
-       <span>
+       <span >
           <%= link_to "Home", root_path, class: "navButton" %>
           Hi <%= current_user.username%>
         </span>
@@ -36,6 +36,7 @@
     </header>
 
     <% flash.each do |key, message| %>
+    <div class="container" style="margin-top: 1rem; margin-bottom: 1rem;">
       <% if key == "alert" %>
         <div class="alert alert-warning alert-dismissible fade show <%= key %>" role="alert">
           <%= message %>
@@ -51,6 +52,7 @@
             </button>
           </div>
         <% end %>
+    </div>
     <% end %>
     <%= yield %>
   </body>

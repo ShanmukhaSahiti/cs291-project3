@@ -1,10 +1,8 @@
-<%= form_with model: [ post, post.comments.build ] do |form| %>
-
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<div class="container">
+  <%= form_with model: [ post, post.comments.build ] do |form| %>
+    <div class="form-group">
+        <%= form.text_area :body, class: "form-control", placeholder: "Enter new comment" %>
+    </div>
+    <%= form.submit class: "btn btn-primary"%>
+  <% end %>
+</div>
